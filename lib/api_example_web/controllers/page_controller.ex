@@ -7,11 +7,21 @@ defmodule ApiExample.UserController do
   end
 
   def scaleDownController(conn, _params) do
-    json conn, "Scale down"
+    json conn, Towel.unwrap(ScaleDownRepository.scaleExcercise(
+      _params["excerciseName"],
+      _params["weight"],
+      _params["reps"],
+      _params["targetExcercise"],
+      _params["RPE"]
+    ))
   end
   
   def setPrimaryController(conn, _params) do
     json conn, "Set Primary"
+  end
+
+  def removePrimaryController(conn, _params) do
+    json conn, "remove primary"
   end
 
 
