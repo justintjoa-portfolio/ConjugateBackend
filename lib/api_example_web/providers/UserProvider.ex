@@ -6,4 +6,8 @@ defmodule ApiExample.UserProvider do
 
     end
 
+    def findUser(userName) do
+
+    end
+
 end
