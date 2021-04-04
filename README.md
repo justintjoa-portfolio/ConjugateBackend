@@ -1,6 +1,8 @@
 PRD: https://docs.google.com/document/d/1-8NSfF9cndeUqWh_LmLjm931wDgtkM9lyGTUh-GSwlI/edit?usp=sharing
 
 
+To Unit Test: mix run unit_tests.exs
+
 # ApiExample
 
 To start your Phoenix server:
