@@ -26,7 +26,8 @@ defmodule ApiExample.SetPrimaryMovementRepository do
     end
 
     def addTargetExcercise(repository, userName, excerciseName, weight, reps, RPE) do
-        resolveAddTargetExcercise(repository.userProvider.findUser(userName)).(repository.targetProvider, excerciseName, weight, reps, RPE)
+        resolveAddTargetExcercise(repository.userProvider.findUser(userName)).
+        (repository.targetProvider, excerciseName, weight, reps, RPE)
     end
 
     def resolveRemoveTargetExcercise(result) do
