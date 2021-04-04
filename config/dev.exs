@@ -1,4 +1,5 @@
 use Mix.Config
+import_config "prod.secret.exs"
 
 # Configure your database
 config :api_example, ApiExample.Repo,

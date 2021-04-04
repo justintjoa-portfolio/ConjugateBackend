@@ -8,6 +8,7 @@
 
 /config/prod.secret.exs
 
+**/*.secret.exs
 
 # The directory Mix downloads your dependencies sources to.
 /deps/
