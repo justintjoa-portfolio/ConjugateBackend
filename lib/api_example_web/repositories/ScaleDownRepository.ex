@@ -4,8 +4,7 @@ defmodule ApiExample.ScaleDownRepository do
 
     
     def init(TargetExcerciseProvider, CandidateExcerciseProvider) do
-        %{targetProvider: TargetExcerciseProvider,
-        candidateExcerciseProvider: CandidateExcerciseProvider}
+        %{targetProvider: TargetExcerciseProviderr}
     end
 
     def resolveAddExcercise(result) do
@@ -14,7 +13,7 @@ defmodule ApiExample.ScaleDownRepository do
                 fn (weight, reps, targetExcercise, RPE) ->
                     ok(
                         (1 + (targetExcercise.RPE - RPE)*0.05) *
-                    (targetExcercise.weight - ((targetExcercise.reps - reps)/2*10 + weight))
+                    (targetExcercise.weight - ((reps - targetExcercise.reps)/2*10 + weight))
                     )
                 end
             {:error, reason}   -> 
