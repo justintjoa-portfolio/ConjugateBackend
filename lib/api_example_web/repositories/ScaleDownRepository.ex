@@ -6,14 +6,13 @@ defmodule ApiExample.ScaleDownRepository do
         case result do
             {:ok, result} -> 
                 fn (weight, reps, targetExcercise, rpeValue) ->
-                    ok(
                         (1 + (targetExcercise."RPE" - RPE)*0.05) *
                     (targetExcercise.weight - ((reps - targetExcercise.reps)/2*10 + weight))
-                    )
+                    
                 end
             {:error, reason}   -> 
                 fn (weight, reps, targetExcercise, RPE) ->
-                    error(reason)
+                    reason
                 end
         end
     end

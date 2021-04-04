@@ -6,13 +6,12 @@
             {:ok, result} -> 
 
                 fn (excerciseName) ->
-                    ok(
-                        TargetExcerciseProvider.addExcercise(value.UUID, excerciseName)
-                    )
+                    TargetExcerciseProvider.addExcercise(value.UUID, excerciseName)
+                    
                 end
             {:error, reason}   -> 
                 fn (excerciseName) ->
-                    error(reason)
+                    reason
                 end
         end
     end

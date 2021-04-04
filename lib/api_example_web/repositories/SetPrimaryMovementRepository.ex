@@ -1,26 +1,18 @@
 defmodule ApiExample.SetPrimaryMovementRepository do
     use Towel
 
-
-    def init(TargetExcerciseProvider) do
-        %{
-            
-            userProvider: UserProvider,
-            targetProvider: TargetExcerciseProvider}
-    end
-
     def resolveAddTargetExcercise(user) do
          case user do
             {:ok, result} -> 
 
                 fn (excerciseName, weight, reps, RPE) ->
-                    ok(
-                        TargetExcerciseProvider.addExcercise(result.UUID, excerciseName, weight, reps, RPE)
-                    )
+
+                    TargetExcerciseProvider.addExcercise(result.UUID, excerciseName, weight, reps, RPE)
+                    
                 end
             {:error, reason}   -> 
                 fn (excerciseName, weight, reps, RPE) ->
-                    error(reason)
+                    reason
                 end
         end
     end
