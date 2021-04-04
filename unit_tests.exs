@@ -1,10 +1,10 @@
 ExUnit.start
 
 defmodule UnitTest do
-  #use ApiExample.CreateUserRepository
   use ExUnit.Case
+  import ApiExample.CreateUserRepository
 
   test "check basic repo" do
-    IO.puts "Hello"
+    ApiExample.CreateUserRepository.hello()
   end
 end
