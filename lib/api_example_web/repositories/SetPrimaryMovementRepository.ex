@@ -7,7 +7,7 @@ defmodule ApiExample.SetPrimaryMovementRepository do
     end
 
     def resolveOperation(operation) do
-        unwrap(operation)
+        Towel.unwrap(operation)
     end
 
     def addTargetExcercise(repository, userName, excerciseName, weight, reps) do

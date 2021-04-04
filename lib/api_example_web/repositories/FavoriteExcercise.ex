@@ -7,12 +7,12 @@ defmodule ApiExample.FavoriteExcericseRepository do
     end
 
     def resolveAddExcercise(attemptedAddition) do
-        unwrap(attemptedAddition)
+        Towel.unwrap(attemptedAddition)
     end
 
 
     def addExcercise(repository, excerciseName) do
-        resolveAddUser(repository.provider.addExcercise(excerciseName))
+        resolveAddExcercise(repository.provider.addExcercise(excerciseName))
     end
 
 end

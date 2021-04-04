@@ -7,7 +7,7 @@ defmodule ApiExample.CreateUserRepository do
     end
 
     def resolveAddUser(attemptedAddition) do
-        unwrap(attemptedAddition)
+        Towel.unwrap(attemptedAddition)
     end
 
 
