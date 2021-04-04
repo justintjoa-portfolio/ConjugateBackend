@@ -10,4 +10,8 @@ defmodule ApiExample.TargetExcerciseProvider do
 
     end
 
+    def addExcercise(UUID, excerciseName) do
+
+    end
+
 end
