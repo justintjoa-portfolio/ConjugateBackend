@@ -2,17 +2,13 @@ defmodule ApiExample.CreateUserRepository do
     use Towel
 
 
-    def init(CreateUserProvider) do
-        %{provider: CreateUserProvider}
-    end
-
     def resolveAddUser(attemptedAddition) do
         Towel.unwrap(attemptedAddition)
     end
 
 
-    def addUser(repository, userName) do
-        resolveAddUser(repository.provider.addUser(userName))
+    def addUser(userName) do
+        resolveAddUser(UserProvider.addUser(userName))
     end
 
 end

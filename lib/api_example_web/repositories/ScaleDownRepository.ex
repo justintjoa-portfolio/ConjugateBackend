@@ -2,11 +2,6 @@ defmodule ApiExample.ScaleDownRepository do
     use Towel
 
 
-    
-    def init(TargetExcerciseProvider, CandidateExcerciseProvider) do
-        %{targetProvider: TargetExcerciseProviderr}
-    end
-
     def resolveAddExcercise(result) do
         case result do
             {:ok, result} -> 
@@ -23,10 +18,10 @@ defmodule ApiExample.ScaleDownRepository do
         end
     end
 
-    def scaleExcercise(repository, excerciseName, weight, reps, targetExcercise, RPE) do
+    def scaleExcercise(excerciseName, weight, reps, targetExcercise, RPE) do
         resolveAddExcercise(
-            repository.findTargetExcercise(targetExcercise).(weight, reps, targetExcercise, RPE)
-        )
+            TargetExcerciseProvider.findExcercise(targetExcercise)).(weight, reps, targetExcercise, RPE)
+        
     end
 
 end
