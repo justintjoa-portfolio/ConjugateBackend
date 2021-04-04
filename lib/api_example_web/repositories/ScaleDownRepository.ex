@@ -11,20 +11,22 @@ defmodule ApiExample.ScaleDownRepository do
     def resolveAddExcercise(result) do
         case result do
             {:ok, result} -> 
-                fn (weight, reps, targetExcercise) ->
-                    if (reps > targetExcercise.reps) do
-                        targetExcercise.weight - ((reps - targetExcercise.reps)/2*10 + weight)
-                    else
-                        targetExcercise.weight - ((targetExcercise.reps - reps)/2*10 + weight)
-                    end
+                fn (weight, reps, targetExcercise, RPE) ->
+                    ok(
+                        (1 + (targetExcercise.RPE - RPE)*0.05) *
+                    (targetExcercise.weight - ((targetExcercise.reps - reps)/2*10 + weight))
+                    )
                 end
-            {:error, reason}   -> "The target excercise doesn't exist!"
+            {:error, reason}   -> 
+                fn (weight, reps, targetExcercise, RPE) ->
+                    error(reason)
+                end
         end
     end
 
-    def scaleExcercise(repository, excerciseName, weight, reps, targetExcercise) do
+    def scaleExcercise(repository, excerciseName, weight, reps, targetExcercise, RPE) do
         resolveAddExcercise(
-            repository.findTargetExcercise(targetExcercise)
+            repository.findTargetExcercise(targetExcercise)(weight, reps, targetExcercise, RPE)
         )
     end
 
