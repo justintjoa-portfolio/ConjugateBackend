@@ -7,6 +7,6 @@ defmodule Excercise do
         reps: reps,
         excerciseName: excerciseName,
         RPE: RPE}
-
+    end
 
 end

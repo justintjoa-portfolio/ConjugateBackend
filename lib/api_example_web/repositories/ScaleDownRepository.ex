@@ -10,9 +10,9 @@ defmodule ApiExample.ScaleDownRepository do
     def resolveAddExcercise(result) do
         case result do
             {:ok, result} -> 
-                fn (weight, reps, targetExcercise, RPE) ->
+                fn (weight, reps, targetExcercise, rpeValue) ->
                     ok(
-                        (1 + (targetExcercise.RPE - RPE)*0.05) *
+                        (1 + (targetExcercise."RPE" - RPE)*0.05) *
                     (targetExcercise.weight - ((reps - targetExcercise.reps)/2*10 + weight))
                     )
                 end
@@ -25,7 +25,7 @@ defmodule ApiExample.ScaleDownRepository do
 
     def scaleExcercise(repository, excerciseName, weight, reps, targetExcercise, RPE) do
         resolveAddExcercise(
-            repository.findTargetExcercise(targetExcercise)(weight, reps, targetExcercise, RPE)
+            repository.findTargetExcercise(targetExcercise).(weight, reps, targetExcercise, RPE)
         )
     end
 
