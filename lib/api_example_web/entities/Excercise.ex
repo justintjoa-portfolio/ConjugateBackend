@@ -1,17 +1,10 @@
 defmodule Excercise do
-    quote do
-        use Ecto.Model
-        @primary_key {:id, :binary_id, autogenerate: true}
-        @foreign_key
+  use Ecto.Schema
 
-
-    end
-
-    def init(weight, reps, excerciseName, RPE) do
-        %{weight: weight,
-        reps: reps,
-        excerciseName: excerciseName,
-        RPE: RPE}
-    end
-
+  schema "users" do
+    field :name, :string
+    field :weight, :integer, default: 0
+    field :reps, :integer, default: 0
+    field :RPE, :integer, default: 0
+  end
 end

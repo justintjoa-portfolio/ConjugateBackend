@@ -15,7 +15,9 @@ defmodule ApiExampleWeb.Router do
 
   scope "/api/v1", ApiExample do
     pipe_through :api
-    get "/users", UserController, :index
+    post "/users", UserController, :createUserController
+    post "/setPrimary", UserController, :setPrimary
+    post "/scaleDown", UserController, :scaleDownController
   end 
 
   # Other scopes may use custom stacks.

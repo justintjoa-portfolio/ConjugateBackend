@@ -3,19 +3,38 @@ defmodule ApiExample.SetPrimaryMovementRepository do
 
 
     def init(TargetExcerciseProvider) do
-        %{provider: TargetExcerciseProvider}
+        %{
+            
+            userProvider: UserProvider,
+            targetProvider: TargetExcerciseProvider}
     end
 
-    def resolveOperation(operation) do
-        Towel.unwrap(operation)
+    def resolveAddTargetExcercise(user) do
+         case user do
+            {:ok, result} -> 
+
+                fn (targetProvider, excerciseName, weight, reps, RPE) ->
+                    ok(
+                        targetProvider.addExcercise(excerciseName, weight, reps, RPE)
+                    )
+                end
+            {:error, reason}   -> 
+                fn (targetProvider, excerciseName, weight, reps, RPE) ->
+                    error(reason)
+                end
+        end
     end
 
     def addTargetExcercise(repository, userName, excerciseName, weight, reps, RPE) do
-        resolveOperation(repository.provider.addTargetExcercise(userName, excerciseName, weight, reps, RPE))
+        resolveAddTargetExcercise(repository.userProvider.findUser(userName)).(repository.targetProvider, excerciseName, weight, reps, RPE)
+    end
+
+    def resolveRemoveTargetExcercise(result) do
+        Towel.unwrap(result)
     end
 
     def removeTargetExcercise(repository, userName, excerciseName) do
-        resolveOperation(repository.provider.removeTargetExcercise(userName, excerciseName))
+        resolveRemoveTargetExcercise(repository.provider.removeTargetExcercise(userName, excerciseName))
     end
 
 end
