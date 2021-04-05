@@ -3,17 +3,12 @@ defmodule ApiExample.SetPrimaryMovementRepository do
 
     def resolveAddTargetExcercise(user) do
          if (user != nil) do
-            IO.puts "START"
             userID = Ecto.UUID.load(user)
-            IO.puts "END"
             case userID do
                 {:ok, result} -> 
                     fn (excerciseName, weight, reps, rpeValue) ->
-
-                 
-
                         ApiExample.TargetExcerciseProvider.addExcercise(result, excerciseName, weight, reps, rpeValue)
-                    
+                        "Excercise added!"
                     end
                 {:error, reason}   -> 
                     fn (excerciseName, weight, reps, rpeValue) ->

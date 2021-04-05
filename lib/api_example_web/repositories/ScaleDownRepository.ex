@@ -1,25 +1,43 @@
 defmodule ApiExample.ScaleDownRepository do
     use Towel
 
+    def calculateExcerciseDifficulty(targetExcercise, reps, weight, rpeValue) do
+        if (targetExcercise != nil) do
+                (1 + ((targetExcercise |> elem(2)) - rpeValue)*0.05) *
+                (((targetExcercise |> elem(0)) - ((reps - ((targetExcercise |> elem(1)))/2*10 + weight))))
+        else 
+            "Target excercise does not exist!"
+        end
+    end
 
-    def resolveAddExcercise(result) do
-        case result do
-            {:ok, result} -> 
-                fn (weight, reps, targetExcercise, rpeValue) ->
-                        (1 + (targetExcercise."RPE" - RPE)*0.05) *
-                    (targetExcercise.weight - ((reps - targetExcercise.reps)/2*10 + weight))
+
+    def resolveScaleExcercise(user) do
+        if (user != nil) do
+            userID = Ecto.UUID.load(user)
+            case userID do
+                {:ok, result} -> 
+                    fn (weight, reps, targetExcerciseName, rpeValue) ->
+                        targetExcercise = ApiExample.TargetExcerciseProvider.findExcercise(result, targetExcerciseName)
+                        calculateExcerciseDifficulty(targetExcercise, reps, weight, rpeValue)
+                    end
+                {:error, reason}   -> 
+                    fn (weight, reps, targetExcerciseName, rpeValue) ->
+                        reason
                     
-                end
-            {:error, reason}   -> 
-                fn (weight, reps, targetExcercise, RPE) ->
-                    reason
+                    end
+            end
+        else
+            fn (weight, reps, targetExcercise, rpeValue) ->
+                       "User does not exist!"
+                    
                 end
         end
     end
 
-    def scaleExcercise(excerciseName, weight, reps, targetExcercise, RPE) do
-        resolveAddExcercise(
-            ApiExample.TargetExcerciseProvider.findExcercise(targetExcercise)).(weight, reps, targetExcercise, RPE)
+    def scaleExcercise(userName, targetExcerciseName, weight, reps, rpeValue) do
+        resolveScaleExcercise(
+            ApiExample.UserProvider.findUser(userName)).(weight, reps, targetExcerciseName, rpeValue)
+        
         
     end
 

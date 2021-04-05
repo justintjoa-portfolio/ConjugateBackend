@@ -8,23 +8,22 @@ defmodule ApiExample.UserController do
 
   def scaleDownController(conn, _params) do
     json conn, ApiExample.ScaleDownRepository.scaleExcercise(
-      _params["excerciseName"],
-      _params["weight"],
-      _params["reps"],
-      _params["targetExcercise"],
-      _params["RPE"]
-    )
-  end
-  
-  def setPrimaryController(conn, _params) do
-    ApiExample.SetPrimaryMovementRepository.addTargetExcercise(
       _params["userName"], 
       _params["excerciseName"],
       _params["weight"],
       _params["reps"],
       _params["RPE"]
     )
-    json conn, "YOLO"
+  end
+  
+  def setPrimaryController(conn, _params) do
+    json conn, ApiExample.SetPrimaryMovementRepository.addTargetExcercise(
+      _params["userName"], 
+      _params["excerciseName"],
+      _params["weight"],
+      _params["reps"],
+      _params["RPE"]
+    )
   end
 
   def removePrimaryController(conn, _params) do
