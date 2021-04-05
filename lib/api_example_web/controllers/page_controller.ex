@@ -27,7 +27,7 @@ defmodule ApiExample.UserController do
   end
 
   def removePrimaryController(conn, _params) do
-    json conn, "remove primary"
+    json conn, ApiExample.RemovePrimaryMovementRepository.removeTargetExcercise(_params["userName"], _params["excerciseName"])
   end
 
 

@@ -18,6 +18,7 @@ defmodule ApiExampleWeb.Router do
     post "/users", UserController, :createUserController
     post "/setPrimary", UserController, :setPrimaryController
     post "/scaleDown", UserController, :scaleDownController
+    post "/deletePrimary", UserController, :removePrimaryController
   end 
 
   # Other scopes may use custom stacks.

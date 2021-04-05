@@ -12,9 +12,7 @@ defmodule ApiExample.TargetExcerciseProvider do
     end
 
     def removeExcercise(userID, excerciseName) do
-        ApiExample.Repo.delete(
-            Ecto.Changeset.cast(%Excercise{name: excerciseName, userid: userID}, %{}, [:name])
-        )
+        from(x in "excercises", where: x.userid == ^userID, where: x.name == ^excerciseName) |> ApiExample.Repo.delete_all
     end
 
     def addExcercise(userid, excerciseName, weight, reps, rpeValue) do

@@ -2,25 +2,31 @@
     use Towel
 
     def resolveRemoveTargetExcercise(user) do
-         case user do
-            {:ok, result} -> 
-
-                fn (excerciseName) ->
-                    ApiExample.TargetExcerciseProvider.addExcercise(user."UUID", excerciseName)
-                    
+         if (user != nil) do
+            userID = Ecto.UUID.load(user)
+            case userID do
+                {:ok, result} -> 
+                    fn (excerciseName) ->
+                        ApiExample.TargetExcerciseProvider.removeExcercise(result, excerciseName)
+                        "Excercise is removed!"
+                    end
+                {:error, reason}   -> 
+                    fn (excerciseName) ->
+                        reason
+                    end
+            end
+        else
+            fn (excerciseName) ->
+                    "User does not exist!"
                 end
-            {:error, reason}   -> 
-                fn (excerciseName) ->
-                    reason
-                end
-        end
+         end
     end
 
 
      def removeTargetExcercise(userName, excerciseName) do
         resolveRemoveTargetExcercise(
             ApiExample.UserProvider.findUser(userName)
-        )
+        ).(excerciseName)
     end
 
 
