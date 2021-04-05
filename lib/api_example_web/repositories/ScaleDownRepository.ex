@@ -3,7 +3,8 @@ defmodule ApiExample.ScaleDownRepository do
 
     def calculateExcerciseDifficulty(targetExcercise, reps, weight, rpeValue) do
         if (targetExcercise != nil) do
-                (1 + ((targetExcercise |> elem(2)) - rpeValue)*0.05) *
+                IO.inspect targetExcercise
+                (1 + ((targetExcercise |> elem(2)) - rpeValue)*0.05 + 0.03) *
                 (((targetExcercise |> elem(0)) - ((reps - ((targetExcercise |> elem(1)))/2*10 + weight))))
         else 
             "Target excercise does not exist!"
