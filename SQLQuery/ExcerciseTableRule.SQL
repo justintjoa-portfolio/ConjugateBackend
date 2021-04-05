@@ -1,0 +1,1 @@
+ALTER TABLE excercises ADD CONSTRAINT constraint_name UNIQUE (userid);
