@@ -17,13 +17,14 @@ defmodule ApiExample.UserController do
   end
   
   def setPrimaryController(conn, _params) do
-    json conn, ApiExample.SetPrimaryMovementRepository.addTargetExcercise(
-      _params["userName"],
+    ApiExample.SetPrimaryMovementRepository.addTargetExcercise(
+      _params["userName"], 
       _params["excerciseName"],
       _params["weight"],
       _params["reps"],
       _params["RPE"]
     )
+    json conn, "YOLO"
   end
 
   def removePrimaryController(conn, _params) do
