@@ -9,11 +9,14 @@ defmodule ApiExample.SetPrimaryMovementRepository do
 
                     fn (excerciseName, weight, reps, RPE) ->
 
+                        IO.puts("i'm here")
+
                         ApiExample.TargetExcerciseProvider.addExcercise(result."UUID", excerciseName, weight, reps, RPE)
                     
                     end
                 {:error, reason}   -> 
                     fn (excerciseName, weight, reps, RPE) ->
+                        IO.puts("i'm there")
                         reason
                     end
             end

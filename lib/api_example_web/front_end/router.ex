@@ -16,7 +16,7 @@ defmodule ApiExampleWeb.Router do
   scope "/api/v1", ApiExample do
     pipe_through :api
     post "/users", UserController, :createUserController
-    post "/setPrimary", UserController, :setPrimary
+    post "/setPrimary", UserController, :setPrimaryController
     post "/scaleDown", UserController, :scaleDownController
   end 
 
