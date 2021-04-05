@@ -14,15 +14,9 @@ defmodule ApiExample.UserProvider do
     end
 
     def findUser(userName) do
-        query = from u in "users", where: u.name == ^userName, select: u.id
-        value = Ecto.UUID.load(ApiExample.Repo.one(query))
-        case value do
-            {:ok, result} -> 
-                    result
-            {:error, reason}   -> 
-                reason
 
-        end
+        query = from u in "users", where: u.name == ^userName, select: u.id
+        value = ApiExample.Repo.one(query)
     end
 
 end
