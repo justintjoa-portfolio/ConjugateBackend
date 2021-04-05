@@ -3,7 +3,9 @@ defmodule ApiExample.UserController do
   use Towel
 
   def createUserController(conn, _params) do
-    json conn, ApiExample.CreateUserRepository.addUser(_params["name"])
+    #json conn, ApiExample.CreateUserRepository.addUser(_params["name"])
+    IO.puts ApiExample.UserProvider.findUser(_params["name"])
+    json conn, "complete"
   end
 
   def scaleDownController(conn, _params) do
