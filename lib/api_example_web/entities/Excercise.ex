@@ -4,11 +4,11 @@ defmodule Excercise do
 
 
   schema "excercises" do
-      add :userid, :string, null: false
-      add :weight, :integer, default: 0
-      add :reps, :integer, default: 0
-      add :RPE, :integer, default: 0
-      add :name, :string, null: false
+      field :userid, :string, null: false
+      field :weight, :integer, default: 0
+      field :reps, :integer, default: 0
+      field :RPE, :integer, default: 0
+      field :name, :string, null: false
 
 
       timestamps()
