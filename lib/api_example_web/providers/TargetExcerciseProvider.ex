@@ -3,7 +3,7 @@ defmodule ApiExample.TargetExcerciseProvider do
     import Ecto.Query
 
     def findExcercise(UUID, excerciseName) do
-         query = from u in "excercises", where: u.name == ^excerciseName, select: {
+         query = from u in "excercises", where: u.name == ^excerciseName, where: u.userid == ^UUID, select: {
              u."weight",
              u."reps",
              u."RPE"
