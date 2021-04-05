@@ -2,8 +2,8 @@ defmodule ApiExample.UserProvider do
     use Towel
 
     def addUser(userName) do
-        Ecto.Repo.insert(
-            Ecto.Changeset.cast(%User{name: "Jason"}, %{}, [:name])
+        ApiExample.Repo.insert(
+            Ecto.Changeset.cast(%User{name: userName}, %{}, [:name])
         )
         
 

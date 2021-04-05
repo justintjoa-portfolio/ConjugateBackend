@@ -5,6 +5,6 @@ defmodule User do
 
   schema "users" do
       field :name, :string, null: false
-
+      timestamps()
   end
 end
