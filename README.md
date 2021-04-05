@@ -1,5 +1,15 @@
 PRD: https://docs.google.com/document/d/1-8NSfF9cndeUqWh_LmLjm931wDgtkM9lyGTUh-GSwlI/edit?usp=sharing
 
+To start: mix phx.server
+
+To dockerize:
+
+docker-compose build
+
+docker-compose up
+
+Then, push the docker image to AWS ECS Repository for use.
+
 
 To Unit Test: mix run unit_tests.exs
 
