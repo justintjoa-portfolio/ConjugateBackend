@@ -1,5 +1,9 @@
 PRD: https://docs.google.com/document/d/1-8NSfF9cndeUqWh_LmLjm931wDgtkM9lyGTUh-GSwlI/edit?usp=sharing
 
+Tech Doc: https://docs.google.com/document/d/1YLfeaWQEScYJPW9LkcrLwW4VWP-W7jVW21gblbhcvZw/edit#heading=h.2kwphvm4pyim
+
+User Guide: 
+
 To start: mix phx.server
 
 To dockerize:
@@ -10,6 +14,7 @@ docker-compose up
 
 Then, push the docker image to AWS ECS Repository for use.
 
+The backend will be listening on localhost:4000
 
 To Unit Test: mix run unit_tests.exs
 
