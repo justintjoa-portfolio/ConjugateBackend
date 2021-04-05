@@ -19,7 +19,7 @@ defmodule ApiExample.ScaleDownRepository do
 
     def scaleExcercise(excerciseName, weight, reps, targetExcercise, RPE) do
         resolveAddExcercise(
-            TargetExcerciseProvider.findExcercise(targetExcercise)).(weight, reps, targetExcercise, RPE)
+            ApiExample.TargetExcerciseProvider.findExcercise(targetExcercise)).(weight, reps, targetExcercise, RPE)
         
     end
 

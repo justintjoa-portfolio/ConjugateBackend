@@ -7,7 +7,7 @@ defmodule ApiExample.SetPrimaryMovementRepository do
 
                 fn (excerciseName, weight, reps, RPE) ->
 
-                    TargetExcerciseProvider.addExcercise(result.UUID, excerciseName, weight, reps, RPE)
+                    ApiExample.TargetExcerciseProvider.addExcercise(result."UUID", excerciseName, weight, reps, RPE)
                     
                 end
             {:error, reason}   -> 
@@ -18,7 +18,7 @@ defmodule ApiExample.SetPrimaryMovementRepository do
     end
 
     def addTargetExcercise(userName, excerciseName, weight, reps, RPE) do
-        resolveAddTargetExcercise(UserProvider.findUser(userName)).
+        resolveAddTargetExcercise(ApiExample.UserProvider.findUser(userName)).
         (excerciseName, weight, reps, RPE)
     end
 

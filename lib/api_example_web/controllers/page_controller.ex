@@ -3,17 +3,17 @@ defmodule ApiExample.UserController do
   use Towel
 
   def createUserController(conn, _params) do
-    json conn, Towel.unwrap(CreateUserRepository.addUser(_params["name"]))
+    json conn, ApiExample.CreateUserRepository.addUser(_params["name"])
   end
 
   def scaleDownController(conn, _params) do
-    json conn, Towel.unwrap(ScaleDownRepository.scaleExcercise(
+    json conn, ApiExample.ScaleDownRepository.scaleExcercise(
       _params["excerciseName"],
       _params["weight"],
       _params["reps"],
       _params["targetExcercise"],
       _params["RPE"]
-    ))
+    )
   end
   
   def setPrimaryController(conn, _params) do

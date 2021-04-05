@@ -1,14 +1,20 @@
 defmodule ApiExample.CreateUserRepository do
-    use Towel
+    
 
 
     def resolveAddUser(attemptedAddition) do
-        Towel.unwrap(attemptedAddition)
+        case attemptedAddition do
+            {:ok, result} -> 
+                 "User successfully added."
+            {:error, reason}   -> 
+                "User already exists."
+
+        end
     end
 
 
     def addUser(userName) do
-        resolveAddUser(UserProvider.addUser(userName))
+        resolveAddUser(ApiExample.UserProvider.addUser(userName))
     end
 
 end

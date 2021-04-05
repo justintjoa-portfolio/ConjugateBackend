@@ -1,12 +1,12 @@
  defmodule ApiExample.RemovePrimaryMovementRepository do
     use Towel
 
-    def resolveRemoveTargetExcercise(value) do
+    def resolveRemoveTargetExcercise(user) do
          case user do
             {:ok, result} -> 
 
                 fn (excerciseName) ->
-                    TargetExcerciseProvider.addExcercise(value.UUID, excerciseName)
+                    ApiExample.TargetExcerciseProvider.addExcercise(user."UUID", excerciseName)
                     
                 end
             {:error, reason}   -> 
@@ -19,7 +19,7 @@
 
      def removeTargetExcercise(userName, excerciseName) do
         resolveRemoveTargetExcercise(
-            UserProvider.findUser(userName)
+            ApiExample.UserProvider.findUser(userName)
         )
     end
 
